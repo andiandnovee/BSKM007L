@@ -11,6 +11,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\PencarianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //custom route untuk App BSKM
     //1. Menampilkan data anggota 
     Route::get('anggota',[AnggotaController::class,'index'])->name('anggota.index');
+    //2. pencarian data 
+    Route::get('/search', [PencarianController::class, 'search'])->name('search');
+    
 
 
 

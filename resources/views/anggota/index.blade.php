@@ -1,6 +1,19 @@
 <!-- resources/views/anggota/index.blade.php -->
 
 <x-app-layout>
+
+
+
+    <search-component 
+    table="view_anggota" fields="Nama Anggota,Perumahan,Blok No,No_HP" 
+    placeholder="Cari anggota..."></search-component>
+
+
+
+
+
+
+
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-2xl font-bold mb-6">Data Anggota</h1>
         <table class="min-w-full bg-white border border-gray-200">

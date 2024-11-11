@@ -1,9 +1,8 @@
 import { Livewire } from '../../vendor/livewire/livewire/dist/livewire.esm';
- 
-Livewire.start()
+
+Livewire.start();
 
 import './bootstrap';
-
 
 // Import Chart.js
 import { Chart } from 'chart.js';
@@ -11,7 +10,7 @@ import { Chart } from 'chart.js';
 // Import flatpickr
 import flatpickr from 'flatpickr';
 
-// import component from './components/component';
+// Import components
 import dashboardCard01 from './components/dashboard-card-01';
 import dashboardCard02 from './components/dashboard-card-02';
 import dashboardCard03 from './components/dashboard-card-03';
@@ -23,7 +22,6 @@ import dashboardCard09 from './components/dashboard-card-09';
 import dashboardCard11 from './components/dashboard-card-11';
 
 // Define Chart.js default settings
-/* eslint-disable prefer-destructuring */
 Chart.defaults.font.family = '"Inter", sans-serif';
 Chart.defaults.font.weight = 500;
 Chart.defaults.plugins.tooltip.borderWidth = 1;
@@ -51,14 +49,12 @@ export const chartAreaGradient = (ctx, chartArea, colorStops) => {
 // Register Chart.js plugin to add a bg option for chart area
 Chart.register({
   id: 'chartAreaPlugin',
-  // eslint-disable-next-line object-shorthand
   beforeDraw: (chart) => {
     if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
       const ctx = chart.canvas.getContext('2d');
       const { chartArea } = chart;
       ctx.save();
       ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
-      // eslint-disable-next-line max-len
       ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
       ctx.restore();
     }
@@ -98,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
   // Flatpickr
   flatpickr('.datepicker', {
     mode: 'range',
@@ -108,16 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
     prevArrow: '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z" /></svg>',
     nextArrow: '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M1.4 10.8L0 9.4l4-4-4-4L1.4 0l5.4 5.4z" /></svg>',
     onReady: (selectedDates, dateStr, instance) => {
-      // eslint-disable-next-line no-param-reassign
       instance.element.value = dateStr.replace('to', '-');
       const customClass = instance.element.getAttribute('data-class');
       instance.calendarContainer.classList.add(customClass);
     },
     onChange: (selectedDates, dateStr, instance) => {
-      // eslint-disable-next-line no-param-reassign
       instance.element.value = dateStr.replace('to', '-');
     },
   });
+
+  // Initialize components
   dashboardCard01();
   dashboardCard02();
   dashboardCard03();
@@ -128,3 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
   dashboardCard09();
   dashboardCard11();
 });
+
+import { createApp } from 'vue';
+import SearchComponent from './components/SearchComponent.vue';
+
+const app = createApp({});
+app.component('search-component', SearchComponent);
+app.mount('#app');
