@@ -31,7 +31,7 @@
         </div>
         
         <!-- Cards -->
-        <div class="grid grid-cols-12 gap-6">
+        <div class="grid grid-cols-2 gap-6">
 
             <!-- Line chart (Acme Plus) -->
             <x-dashboard.dashboard-card-01 :dataFeed="$dataFeed" />
