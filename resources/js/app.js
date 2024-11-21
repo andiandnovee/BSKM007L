@@ -129,6 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
 import { createApp } from 'vue';
 import SearchComponent from './components/SearchComponent.vue';
 
-const app = createApp({});
-app.component('search-component', SearchComponent);
-app.mount('#app');
+
+function initializeVueComponents(selector, component) {
+  const elements = document.querySelectorAll(selector);
+  elements.forEach((el) => {
+      const app = createApp(component);
+
+      // Opsional: Ambil data dari atribut HTML jika ada
+      const props = el.dataset;
+      app.provide('props', props); // Kirim data ke komponen
+      app.mount(el);
+  });
+}
+
+initializeVueComponents('.search-vue', SearchComponent);
+

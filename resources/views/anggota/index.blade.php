@@ -4,9 +4,7 @@
 
 
 
-    <search-component 
-    table="view_anggota" fields="Nama Anggota,Perumahan,Blok No,No_HP" 
-    placeholder="Cari anggota..."></search-component>
+   
 
 
 

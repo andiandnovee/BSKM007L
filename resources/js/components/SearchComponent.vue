@@ -32,6 +32,7 @@
 import axios from 'axios';
 
 export default {
+    name:"SearchComponent",
     props: {
         table: {
             type: String,
