@@ -15,21 +15,31 @@ class PencarianController extends Controller
     }
 
     public function search(Request $request)
-{
-    $table = $request->input('table');
-    $fields = explode(',', $request->input('fields'));
-    $keyword = $request->input('search');
+    {
+        // Validasi input
+        $table = $request->input('table');
+        $fields = $request->input('fields');
+        $keyword = $request->input('search');
 
-    if (!$table || !$fields || !$keyword) {
-        return response()->json(['error' => 'Parameter pencarian tidak lengkap.'], 422);
+        if (!$table || !$fields || !$keyword) {
+            return response()->json(['error' => 'Parameter pencarian tidak lengkap.'], 422);
+        }
+
+        try {
+            // Memecah fields menjadi array
+            $fieldsArray = explode(',', $fields);
+
+            // Panggil search service
+            $results = $this->searchService->searchInTable($table, $fieldsArray, $keyword);
+
+            // Kembalikan response JSON dengan struktur yang rapi
+            return response()->json($results, 200);
+        } catch (\Exception $e) {
+            // Menangkap error dan memberikan respons JSON
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat melakukan pencarian.',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
-
-    $results = $this->searchService->searchInTable($table, $fields, $keyword);
-    
-    
-
-
-    return response()->json(['results' => $results]);
-}
-
 }

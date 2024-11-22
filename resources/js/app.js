@@ -115,32 +115,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initialize components
-  dashboardCard01();
-  dashboardCard02();
-  dashboardCard03();
-  dashboardCard04();
-  dashboardCard05();
-  dashboardCard06();
-  dashboardCard08();
-  dashboardCard09();
-  dashboardCard11();
+  //dashboardCard01();
+  //dashboardCard02();
+  //dashboardCard03();
+  //dashboardCard04();
+  //dashboardCard05();
+  ///dashboardCard06();
+  //dashboardCard08();
+  //dashboardCard09();
+  //dashboardCard11();
 });
 
 import { createApp } from 'vue';
 import SearchComponent from './components/SearchComponent.vue';
 
-
-function initializeVueComponents(selector, component) {
-  const elements = document.querySelectorAll(selector);
-  elements.forEach((el) => {
-      const app = createApp(component);
-
-      // Opsional: Ambil data dari atribut HTML jika ada
-      const props = el.dataset;
-      app.provide('props', props); // Kirim data ke komponen
-      app.mount(el);
-  });
+if (document.getElementById('search-app')) {
+  const searchApp = createApp({});
+  searchApp.component('search-component', SearchComponent);
+  searchApp.mount('#search-app');
 }
-
-initializeVueComponents('.search-vue', SearchComponent);
-

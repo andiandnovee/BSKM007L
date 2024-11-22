@@ -35,10 +35,11 @@
 
             <!-- Line chart (Acme Plus) -->
             <x-card-master title="tess title" >
-
+            <div id="search-app">
             <search-component class="search-vue"
             table="view_anggota" fields="Nama Anggota,Perumahan,Blok No,No_HP" 
             placeholder="Cari anggota..."></search-component>
+            </div>
 
             
             

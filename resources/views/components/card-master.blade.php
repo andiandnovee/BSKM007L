@@ -53,7 +53,7 @@
     </div>
     <!-- Chart built with Chart.js 3 -->
     <!-- Check out src/js/components/dashboard-card-01.js for config -->
-    <div  width="389" height="128" class="grow max-sm:max-h-[128px] xl:max-h-[128px]">
+    <div   class="grow min-h-100px max-sm:max-h-[128px] xl:max-h-[128px]">
         <!-- Change the height attribute to adjust the chart height -->
         
     </div>

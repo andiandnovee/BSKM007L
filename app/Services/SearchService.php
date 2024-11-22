@@ -10,17 +10,20 @@ class SearchService
     {
         // Memisahkan kata kunci menjadi array kata
         $keywords = explode(' ', $keyword);
+
+        // Membuat query awal
         $query = DB::table($table);
 
+        // Menambahkan pencarian untuk setiap kata kunci
         foreach ($keywords as $word) {
-            $query->where(function($q) use ($fields, $word) {
+            $query->where(function ($q) use ($fields, $word) {
                 foreach ($fields as $field) {
                     $q->orWhere($field, 'LIKE', "%{$word}%");
                 }
             });
         }
 
-        
-        return $query->get();
+        // Mengembalikan hasil dengan pagination
+        return $query->paginate(10); // Pagination di luar loop
     }
 }
