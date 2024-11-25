@@ -13,7 +13,9 @@ class SearchService
 
         // Membuat query awal
         $query = DB::table($table);
-
+        if (empty($keyword)) {
+            return $query->paginate(10);
+        } // Pagination dengan 50 data per halaman
         // Menambahkan pencarian untuk setiap kata kunci
         foreach ($keywords as $word) {
             $query->where(function ($q) use ($fields, $word) {
