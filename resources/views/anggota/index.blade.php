@@ -47,11 +47,11 @@
 
 
 
-            <!-- <x-card-master title="Data Anggota" >
+            <x-card-master title="Data Anggota" >
                  <div id="anggota-app">
                     <anggota-component ></anggota-component>
                 </div> 
-            </x-card-master> -->
+            </x-card-master>
 
         </div>
 

@@ -14,9 +14,6 @@ class tbl_m_perumahan extends Model
         'Perumahan_lokasi'
     ];
 
-    public function anggota()
-    {
-        return $this->hasMany(Anggota::class, 'Anggota_perumahan_id');
-    }
+    public function anggota() { return $this->hasMany(Anggota::class, 'Anggota_perumahan_id'); }
 
 }

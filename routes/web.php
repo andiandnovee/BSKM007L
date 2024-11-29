@@ -31,9 +31,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //custom route untuk App BSKM
     //1. Menampilkan data anggota 
-    // Route::get('/anggota', function () {
-    //     return view('anggota.index');
-    // })->name('anggota.index');
+    Route::get('/anggota', function () {
+        return view('anggota.index');
+    })->name('anggota.index');
     
     
 

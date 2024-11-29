@@ -20,10 +20,6 @@ class Anggota extends Model
     ];
 
 
-    public function perumahan()
-    {
-        return $this->belongsTo(tbl_m_perumahan::class, 'Perumahan_id');
-    }
-
+    public function perumahan() { return $this->belongsTo(tbl_m_perumahan::class, 'Anggota_perumahan_id'); }
 
 }

@@ -15,7 +15,7 @@ class AnggotaController extends Controller
      //   DB::enableQueryLog();
 
     $search = $request->input('search');
-    $query = Anggota::with('perumahan')->query()
+    $query = Anggota::with('perumahan')
         ->when($search, function ($query, $search) {
             return $query->where('Anggota_nama', 'like', "%{$search}%");
         })
