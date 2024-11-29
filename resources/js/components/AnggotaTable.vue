@@ -35,7 +35,7 @@
                     <td class="border p-2">{{ item.Anggota_hp }}</td>
                     <td class="border p-2">
                         <button @click="editAnggota(item)" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
-                        <button @click="deleteAnggota(item.id)" class="bg-red-500 text-white px-2 py-1 rounded">Hapus</button>
+                        <button @click="deleteAnggota(item.Anggota_idid)" class="bg-red-500 text-white px-2 py-1 rounded">Hapus</button>
                     </td>
                 </tr>
             </tbody>
