@@ -34,7 +34,7 @@
         <div class="grid grid-cols-2 gap-6">
 
             <!-- Line chart (Acme Plus) -->
-            <x-card-master title="Data Anggota" >
+            <x-card-master title="cari Anggota" >
             <div id="search-app">
             <search-component class="search-vue"
             table="view_anggota" fields="Nama Anggota,Perumahan,Blok No,No_HP" 
@@ -43,7 +43,15 @@
 
             
             
-            </x-card-master>
+            </x-card-master> 
+
+
+
+            <!-- <x-card-master title="Data Anggota" >
+                 <div id="anggota-app">
+                    <anggota-component ></anggota-component>
+                </div> 
+            </x-card-master> -->
 
         </div>
 

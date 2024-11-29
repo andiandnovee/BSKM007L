@@ -128,9 +128,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 import { createApp } from 'vue';
 import SearchComponent from './components/SearchComponent.vue';
+import AnggotaComponent from './components/AnggotaTable.vue';
 
 if (document.getElementById('search-app')) {
   const searchApp = createApp({});
   searchApp.component('search-component', SearchComponent);
   searchApp.mount('#search-app');
+}
+
+if (document.getElementById('anggota-app')) {
+  const anggotaApp = createApp({});
+  anggotaApp.component('anggota-component', AnggotaComponent);
+  anggotaApp.mount('#anggota-app');
 }
