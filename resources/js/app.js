@@ -1,3 +1,5 @@
+import 'alpinejs';
+
 import { Livewire } from '../../vendor/livewire/livewire/dist/livewire.esm';
 
 Livewire.start();
@@ -6,6 +8,12 @@ import './bootstrap';
 
 // Import Chart.js
 import { Chart } from 'chart.js';
+import 'preline';
+
+
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;
+Alpine.start();
 
 // Import flatpickr
 import flatpickr from 'flatpickr';
@@ -141,3 +149,15 @@ if (document.getElementById('anggota-app')) {
   anggotaApp.component('anggota-component', AnggotaComponent);
   anggotaApp.mount('#anggota-app');
 }
+
+import { createApp, h } from 'vue';
+import { createInertiaApp } from '@inertiajs/vue3';
+
+createInertiaApp({
+    resolve: name => require(`./Pages/${name}.vue`),
+    setup({ el, App, props, plugin }) {
+        createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .mount(el);
+    },
+});

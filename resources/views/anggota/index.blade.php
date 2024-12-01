@@ -19,41 +19,51 @@
                 <x-datepicker />
 
                 <!-- Add view button -->
-                <button class="btn bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white">
+                <button
+                    class="btn bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white">
                     <svg class="fill-current shrink-0 xs:hidden" width="16" height="16" viewBox="0 0 16 16">
-                        <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
-                  </svg>
-                  <span class="max-xs:sr-only">Add View</span>
+                        <path
+                            d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
+                    </svg>
+                    <span class="max-xs:sr-only">Add View</span>
                 </button>
-                
+
             </div>
 
         </div>
-        
+
         <!-- Cards -->
         <div class="grid grid-cols-2 gap-6">
 
             <!-- Line chart (Acme Plus) -->
-            <x-card-master title="cari Anggota" >
-            <div id="search-app">
-            <search-component class="search-vue"
-            table="view_anggota" fields="Nama Anggota,Perumahan,Blok No,No_HP" 
-            placeholder="Cari anggota..."></search-component>
-            </div>
-
-            
-            
-            </x-card-master> 
 
 
 
-            <x-card-master title="Data Anggota" >
-                 <div id="anggota-app">
-                    <anggota-component ></anggota-component>
-                </div> 
+
+            <x-card-master title="Data Anggota">
+                <div id="anggota-app">
+                    <anggota-component></anggota-component>
+                </div>
+
+
             </x-card-master>
 
+
+            
+
+           
+
+
+
         </div>
+
+        <x-dialog-modal-preline id="hs-notifications">
+            <x-slot name="title">BSKM </x-slot>
+            <x-slot name="content"></x-slot>
+            <x-slot name="footer"></x-slot>
+        </x-dialog-modal-preline>
+
+
 
     </div>
 </x-app-layout>

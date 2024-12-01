@@ -63,7 +63,7 @@
                   
                 </main>
 
-                
+                <div id="app" class="grow" data-page="{{ json_encode($page) }}"></div>
                
             </div>
 

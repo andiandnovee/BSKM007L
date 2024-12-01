@@ -34,11 +34,13 @@
         <div class="grid grid-cols-2 gap-6">
 
             <!-- Line chart (Acme Plus) -->
-            <x-card-master title="tess title" >
-            
-            
-            
-            </x-card-master>
+            <x-card-master title="cari Anggota" >
+            <div id="search-app">
+            <search-component class="search-vue"
+            table="view_anggota" fields="Nama Anggota,Perumahan,Blok No,No_HP" 
+            placeholder="Cari anggota..."></search-component>
+            </div>
+            </x-card-master> 
 
         </div>
 
