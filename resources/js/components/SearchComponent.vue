@@ -23,7 +23,8 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
-                                <tr v-for="result in results" :key="result.id" class="hover:bg-gray-100 dark:hover:bg-neutral-700">
+                                <tr v-for="result in results" :key="result.id"
+                                    class="hover:bg-gray-100 dark:hover:bg-neutral-700">
                                     <td v-for="field in fieldsArray" :key="field"
                                         class=" px-6 py-4 whitespace-nowrap text-sm font-medium text-white-800 dark:text-neutral-200">
                                         {{ result[field] !== null && result[field] !== undefined ? result[field] : '-'
@@ -65,6 +66,7 @@
 </template>
 
 <script>
+import { ref, reactive, computed, onMounted } from 'vue';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
 
@@ -84,67 +86,75 @@ export default {
             default: "Cari...",
         },
     },
-    data() {
-        return {
-            query: '',
-            results: [], // Inisialisasi sebagai array
-            loading: false,
-            page: 1,
-            totalPages: 1,
-            totalItems: 0,
-            fieldsArray: this.fields ? this.fields.split(',') : [], // Pastikan terdefinisi
-        };
-    },
+    setup(props) {
+        const query = ref('');
+        const results = ref([]);
+        const loading = ref(false);
+        const page = ref(1);
+        const totalPages = ref(1);
+        const totalItems = ref(0);
+        const fieldsArray = ref(props.fields ? props.fields.split(',') : []);
 
-    methods: {
-        search(page = 1) {
-            if (this.query.length < 3) {
-                this.results = [];
-                this.totalPages = 1;
-                this.totalItems = 0;
+        const search = debounce((page = 1) => {
+            if (query.value.length < 3) {
+                results.value = [];
+                totalPages.value = 1;
+                totalItems.value = 0;
                 return;
             }
 
-            this.loading = true;
+            loading.value = true;
 
             axios
                 .get("/search", {
                     params: {
-                        table: this.table,
-                        fields: this.fields,
-                        search: this.query,
+                        table: props.table,
+                        fields: props.fields,
+                        search: query.value,
                         page: page,
                     },
                 })
                 .then((response) => {
-                    this.results = response.data.data;
-                    this.totalItems = response.data.total;
-                    this.page = response.data.current_page;
-                    this.totalPages = response.data.last_page;
-                    this.loading = false;
+                    results.value = response.data.data;
+                    totalItems.value = response.data.total;
+                    page.value = response.data.current_page;
+                    totalPages.value = response.data.last_page;
+                    loading.value = false;
                 })
                 .catch(() => {
-                    this.loading = false;
+                    loading.value = false;
                 });
-        },
-        changePage(page) {
-            if (page > 0 && page <= this.totalPages) {
-                this.search(page);
+        }, 300);
+
+        const changePage = (newPage) => {
+            if (newPage > 0 && newPage <= totalPages.value) {
+                search(newPage);
             }
-        },
-    },
-    computed: {
-        pageNumbers() {
-            const range = 2; // Jumlah halaman sebelum dan sesudah halaman aktif
-            const start = Math.max(1, this.page - range);
-            const end = Math.min(this.totalPages, this.page + range);
+        };
+
+        const pageNumbers = computed(() => {
+            const range = 2;
+            const start = Math.max(1, page.value - range);
+            const end = Math.min(totalPages.value, page.value + range);
             return Array.from({ length: end - start + 1 }, (_, i) => start + i);
-        },
-    },
-    created() {
-        this.debouncedSearch = debounce(() => {
-            this.search(1);
-        }, 300); // Penundaan pencarian 300ms
+        });
+
+        onMounted(() => {
+            search(1);
+        });
+
+        return {
+            query,
+            results,
+            loading,
+            page,
+            totalPages,
+            totalItems,
+            fieldsArray,
+            search,
+            changePage,
+            pageNumbers,
+        };
     },
 };
 </script>
